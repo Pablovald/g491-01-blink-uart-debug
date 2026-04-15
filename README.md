@@ -2,6 +2,7 @@
 Simple project for STM32G491RET6 with a blink loop and logging using LPUART
 
 Following the schematics for the STM32G491RET6 device, I have assigned GPIO_Output to PA5 which controls the LD2 (refer to image below)
+
 <img width="845" height="568" alt="Captura de pantalla 2026-04-15 a las 14 24 50" src="https://github.com/user-attachments/assets/e5c04b13-4140-43e4-ac14-9d6c0b33e396" />
 
 For the logging I have used LPUART1, which is by default connected to the STLINK-V3E Virtual COM port. This requires PA2 to be assigned as LPUART1_TX and PA3 as LPUART2_TX:
