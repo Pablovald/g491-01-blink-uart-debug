@@ -41,7 +41,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef hlpuart1;
-
+const char *ledOn = "LED ON\r\n";
+const char *ledOff = "LED OFF\r\n";
+const char *bootInit = "Boot sequence\r\n";
+const char *blinkInit = "Entering blink loop\r\n";
+const char *LPUARTinit = "LPUART initialized\r\n";
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -88,9 +92,6 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  const char *bootInit = "Boot sequence\r\n";
-  const char *blinkInit = "Entering blink loop\r\n";
-
   log_uart((uint8_t *)bootInit, strlen(bootInit), 100);
   log_uart((uint8_t *)blinkInit, strlen(blinkInit), 100);
   /* USER CODE END 2 */
@@ -156,7 +157,7 @@ static void MX_LPUART1_UART_Init(void)
 {
 
   /* USER CODE BEGIN LPUART1_Init 0 */
-  const char *LPUARTinit = "LPUART initialized\r\n";
+
   /* USER CODE END LPUART1_Init 0 */
 
   /* USER CODE BEGIN LPUART1_Init 1 */
@@ -203,7 +204,7 @@ static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
-  const char *gpioInit = "GPIO initialized\r\n";
+
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
@@ -220,7 +221,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
-  log_uart((uint8_t *)gpioInit, strlen(gpioInit), 100);
+
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
@@ -235,8 +236,7 @@ HAL_StatusTypeDef log_uart(uint8_t *message, uint16_t size, uint32_t timeout)
 // all of the behaviour is logged using uart
 void blink()
 {
-  const char *ledOn = "LED ON\r\n";
-  const char *ledOff = "LED OFF\r\n";
+
 
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
   log_uart((uint8_t *)ledOn, strlen(ledOn), 100);
